@@ -1,7 +1,7 @@
 import express from 'express'
 import {MongoClient, ObjectId} from "mongodb"
 import cors from 'cors'
-import getRouter from './routers.js'
+import getAndAddContactRouter from './routers.js'
 
 const url = 'mongodb+srv://Uncle_Niko:galatapodsalatom@cluster0.eq47q.mongodb.net/test_1?retryWrites=true&w=majority'
 const client = new MongoClient(url, {
@@ -23,42 +23,11 @@ const connectionDB = async () => {
         console.log(e.message)
     }
 }
-await connectionDB()
+connectionDB()
 
 export const db = client.db('test_1').collection('user_phone_numbers')
 
-//get contact
-
-app.use('/app', getRouter)
-
-// app.post('/add_contact/:name/:id', async (req, res, next) => {
-//         console.log(req.params)
-//         let {name, phone} = req.body
-//         try {
-//             await connectionDB()
-//             await db.insertOne({name: name, phone: phone})
-//         } catch (e) {
-//             if (e) {
-//                 return res.send({status: "bad"})
-//                 // console.log(e.message)
-//                 // throw new Error('BLYA')
-//             }
-//         }
-//         // res.send({status: "ok"})
-//         // await client.close()
-//         next()
-//     },
-//     async (req, res) => {
-//         try {
-//             let data = await db.find({}).toArray()
-//             res.send(data)
-//             // res.send({status: "ok"})
-//         } catch (e) {
-//             console.log(e.message)
-//             throw new Error('ERROR')
-//         }
-//         // await client.close()
-//     })
+app.use('/app', getAndAddContactRouter)
 
 app.post('/delete_contact/', async (req, res) => {
     let {_id} = req.body
