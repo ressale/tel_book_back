@@ -5,7 +5,6 @@ const client = new MongoClient(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-
 export const db = client.db('test_1').collection('user_phone_numbers')
 export const connectionDB = async () => {
     try {

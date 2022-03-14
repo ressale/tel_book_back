@@ -9,7 +9,7 @@ const app = express()
 await connectionDB()
 
 app.listen(PORT, () => console.log(`connect on ${PORT}...`))
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 app.use('/app', getAndAddContactRouter)
 app.use('/app', changeAndDeleteContactRouter)
