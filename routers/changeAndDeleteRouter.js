@@ -1,6 +1,7 @@
 import {Router} from "express"
 import {db} from "../connectionDB.js"
 import {ObjectId} from "mongodb"
+import Model from '../mongooseConnect/mongooseConnect.js'
 const router = Router()
 
 router.post('/delete_contact/', async (req, res) => {
